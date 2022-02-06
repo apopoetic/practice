@@ -45,6 +45,15 @@ ggplot() + geom_segment(data = awards, aes(x=yr, xend = yr, y=0, yend=n_songs)) 
   xlim(1955, 2022)
 
 #combine two graphs
-g1 <- ggplot(data = lata, aes(year, songs, fill = variables)) + geom_area(alpha = 0.75) +
-  theme_classic() + labs(title = "BODY OF LATA MANGESHKAR JI'S WORK", caption = "A. Jamwal\n Source: https://atulsongaday.me/category/series-of-articles/yearwise-review-of-lata-mangeshkar-hf-songs/", size = 10) +
-  xlab("Songs (number)") + ylab("Year") +geom_text(x=2000, y= 200, label = "Cumulative songs = 5255")
+g1 <- ggplot() + geom_area(data = lata, aes(year, songs, fill = variables)) +
+  geom_area(alpha = 0.75) + theme_classic() + 
+  labs(title = "BODY OF LATA MANGESHKAR JI'S WORK", caption = "A. Jamwal\n Source: https://atulsongaday.me/category/series-of-articles/yearwise-review-of-lata-mangeshkar-hf-songs/", size = 3) +
+  xlab("Year") + ylab("Songs (number)") + 
+  #geom_text(x=2000, y= 200, label = "Cumulative songs = 5255") +
+  geom_segment(data = awards, aes(x=yr, xend = yr, y=0, yend=n_songs)) +
+  geom_point(data = awards, aes(x =yr, y=n_songs), size =3, colour = "red", 
+             fill = alpha("orange", 0.5), alpha = 0.75, shape = 21) + 
+  geom_text(data = awards, aes(x =yr, y=n_songs), label= labels, vjust  = -1.5, label = "Cumulative songs = 5255")
++
+  geom_text(x=2000, y= 200, label = )
+  
